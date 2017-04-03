@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://www.opengis.net/QoS/1.0"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:qos="http://www.opengis.net/QoS/1.0"
+    xmlns:ows="http://www.opengis.net/ows/2.0"
+    
+    elementFormDefault="qualified">
+    
+    <import namespace="http://www.w3.org/1999/xlink" schemaLocation="http://www.w3.org/1999/xlink.xsd"/>
+    <import namespace="http://www.opengis.net/ows/2.0" schemaLocation="http://schemas.opengis.net/ows/2.0/owsAll.xsd"/>
+    
+    <complexType name="QualityOfServiceMetadataType">
+        <sequence>
+            <element name="OperatingInfo" type="qos:OperatingInfoType" minOccurs="0" maxOccurs="unbounded" />
+            <element ref="qos:QualityOfServiceStatement" minOccurs="0" maxOccurs="unbounded"/>
+            <element name="RepresentativeOperation" type="qos:RepresentativeOperationType" minOccurs="0" maxOccurs="unbounded" />
+            <element name="OperationAnomaly" type="qos:OperationAnomalyType" minOccurs="0" maxOccurs="unbounded" />
+        </sequence>
+    </complexType>
+
+    <complexType name="OperatingInfoType">
+        <sequence>
+            <element name="OperationalStatus" type="qos:CodeListReferenceType" minOccurs="0"/>
+            <element name="Description" type="string" minOccurs="0"/>
+            <choice>
+                <element name="ByDaysOfWeek" minOccurs="0" maxOccurs="unbounded">
+                    <complexType>
+                        <sequence>
+                            <element name="On" type="qos:dayOfWeekListType"/>
+                            <element name="StartTime" type="time" minOccurs="0" />
+                            <element name="EndTime" type="time" minOccurs="0" />
+                        </sequence>
+                    </complexType>
+                </element>
+                <sequence>
+                    <element name="StartTime" type="time" minOccurs="0"/>
+                    <element name="EndTime" type="time" minOccurs="0"/>
+                </sequence>
+            </choice>
+        </sequence>
+    </complexType>
+    
+    <complexType name="OperationAnomalyType">
+        <sequence>
+            <element name="AnomalyType" type="qos:CodeListReferenceType"/>
+            <element name="Effect" type="qos:CodeListReferenceType" minOccurs="0" />
+            <element name="Description" type="string" minOccurs="0"/>
+            <choice>
+                <element name="RepeatedOccurance" minOccurs="0" maxOccurs="unbounded">
+                    <complexType>  
+                        <sequence>
+                        <choice>
+                            <element name="Weekly">
+                                <complexType>
+                                    <sequence>
+                                        <element name="DayOfWeek" type="qos:dayOfWeekListType" />
+                                    </sequence>
+                                </complexType>
+                            </element>
+                            <element name="Monthly" type="qos:MonthlyOccurranceType" maxOccurs="unbounded" />
+                            <element name="Yearly">
+                                <complexType>
+                                    <choice>
+                                        <element name="OnDayOfYear" type="positiveInteger" maxOccurs="unbounded"/>
+                                        <element name="OnWeekDay" type="qos:NthWeekDayType" maxOccurs="unbounded"/>                  
+                                        <element name="InMonth" maxOccurs="unbounded">
+                                            <complexType>
+                                                <sequence>
+                                                    <element name="MonthOfYear" type="positiveInteger"/>
+                                                    <element name="DayOfMonth" type="qos:MonthlyOccurranceType" />
+                                                </sequence>
+                                            </complexType>
+                                        </element>
+                                    </choice>
+                                </complexType>
+                            </element>
+                        </choice>
+                        <element name="StartTime" type="time"/>
+                        <element name="EndTime" type="time" minOccurs="0"/>
+                        </sequence>
+                        <attribute name="calendar" type="anyURI" use="optional"/>
+                    </complexType>
+                </element>
+                <element name="OneTimeOccurance">
+                    <complexType>
+                        <sequence>
+                            <element name="Start" type="qos:DateTimeOrIndeterminate" />
+                            <element name="End" type="qos:DateTimeOrIndeterminate" minOccurs="0"/>
+                        </sequence>
+                    </complexType>
+                </element>
+            </choice>
+        </sequence>
+    </complexType>
+    
+    <complexType name="RepresentativeOperationType">
+        <sequence>
+            <element ref="qos:_Operation" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="qos:QualityOfServiceStatement" minOccurs="0" maxOccurs="unbounded"/>
+        </sequence>
+    </complexType>
+    
+    <element name="_Operation" type="qos:AbstractOperationType" abstract="true"/>
+    <complexType name="AbstractOperationType" abstract="true">
+        <sequence>
+            <element ref="ows:DCP" minOccurs="0" maxOccurs="unbounded"/>
+            <element name="Constraint" type="ows:DomainType" minOccurs="0" maxOccurs="unbounded"/>
+        </sequence>
+    </complexType>
+    
+    <element name="QualityOfServiceStatement" type="qos:QualityOfServiceStatementType" />
+    <complexType name="QualityOfServiceStatementType">
+        <sequence>
+            <element name="Metric" type="qos:CodeListReferenceType" maxOccurs="unbounded"/>
+            <choice>
+                <element name="Value" type="string" />
+                <element name="LessThanOrEqual" type="qos:numberWithUnitType" />
+                <element name="MoreThanOrEqual" type="qos:numberWithUnitType" />
+            </choice>
+        </sequence> 
+    </complexType>
+
+    <complexType name="CodeListReferenceType">
+        <sequence>
+            <element name="Identifier" type="anyURI"/>
+            <element name="Title" type="string" minOccurs="0"/>
+            <element name="Description" type="string" minOccurs="0"/>
+        </sequence>
+    </complexType>
+    
+    <simpleType name="dayOfWeekListType">
+        <annotation>
+            <documentation>
+                A type for a list of week days.
+            </documentation>
+        </annotation>
+        <list>
+            <simpleType>
+                <restriction base="string">
+                    <enumeration value="Monday" />
+                    <enumeration value="Tuesday"/>
+                    <enumeration value="Wednesday"/>
+                    <enumeration value="Thursday"/>
+                    <enumeration value="Friday"/>
+                    <enumeration value="Saturday"/>
+                    <enumeration value="Sunday"/>
+                    <enumeration value="EveryDay"/>
+                </restriction>
+            </simpleType>  
+        </list>
+    </simpleType>
+    
+    <complexType name="DateTimeOrIndeterminate">
+        <simpleContent>
+            <extension base="qos:dateTimeOrEmpty">
+                <attribute name="indeterminateValue" type="qos:timeIndeterminateValueType" />
+            </extension>
+        </simpleContent>
+    </complexType>
+    
+    <simpleType name="dateTimeOrEmpty">
+        <union memberTypes="dateTime">
+            <simpleType>
+                <restriction base="string">
+                    <length value="0"/>
+                </restriction>
+            </simpleType>
+        </union>
+    </simpleType>
+    
+    <simpleType name="timeIndeterminateValueType">
+        <annotation>
+            <documentation>
+                These values are interpreted as follows: -	"unknown" indicates that no specific value for temporal position is provided. -	"now" indicates that the specified value shall be replaced with the current temporal position whenever the value is accessed. -	"before" indicates that the actual temporal position is unknown, but it is known to be before the specified value. -	"after" indicates that the actual temporal position is unknown, but it is known to be after the specified value. A value for indeterminatePosition may -	be used either alone, or -	qualify a specific value for temporal position.
+            </documentation>
+        </annotation>
+        <restriction base="string">
+            <enumeration value="after"/>
+            <enumeration value="before"/>
+            <enumeration value="now"/>
+            <enumeration value="unknown"/>
+        </restriction>
+    </simpleType>
+    
+    <complexType name="numberWithUnitType">
+        <simpleContent>
+            <extension base="double">
+                <attribute name="uom"/>
+            </extension>
+        </simpleContent>
+    </complexType>
+    
+    <complexType name="NthWeekDayType">
+        <sequence>
+            <element name="NthOccurrence" type="positiveInteger"/>
+            <element name="DayOfWeek" type="qos:dayOfWeekListType"/>
+        </sequence>
+    </complexType>
+    
+    <complexType name="MonthlyOccurranceType">
+        <choice>
+            <element name="WeekDay" type="qos:NthWeekDayType" />
+            <element name="DayOfMonth" type="positiveInteger"/>
+        </choice>
+    </complexType>
+   
+</schema>
