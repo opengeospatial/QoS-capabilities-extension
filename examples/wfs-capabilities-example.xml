@@ -286,46 +286,34 @@
                                 <ows2:Get/>
                             </ows2:HTTP>
                         </ows2:DCP>
-                        <qos-wfs:AdHocQueryRestrictions>
+                        <qos-wfs:AdHocQueryConstraints>
                             <qos-wfs:TypeNameOptions>ad:Address ad:ThoroughfareName</qos-wfs:TypeNameOptions>
-                            <qos-wfs:Constraint name="CRS">
+                            <qos:AreaConstraint srsName="urn:ogc:def:crs:EPSG::4258">
+                                <qos:LowerCorner>3.37087 50.7539</qos:LowerCorner>
+                                <qos:UpperCorner>7.21097 53.4658</qos:UpperCorner>
+                            </qos:AreaConstraint>
+                            <qos:RequestParameterConstraint name="CRS">
                                 <ows2:AllowedValues>
                                     <ows2:Value>urn:ogc:def:crs:EPSG::4258</ows2:Value>
                                 </ows2:AllowedValues>
-                            </qos-wfs:Constraint>
-                            <qos-wfs:Constraint name="CoordinateLimits">
-                                <ows2:AllowedValues>
-                                    <ows2:Range>
-                                        <ows2:MinimumValue>3.37087</ows2:MinimumValue>
-                                        <ows2:MaximumValue>7.21097</ows2:MaximumValue>
-                                    </ows2:Range>
-                                </ows2:AllowedValues>
-                            </qos-wfs:Constraint>
-                            <qos-wfs:Constraint name="CoordinateLimits">
-                                <ows2:AllowedValues>
-                                    <ows2:Range>
-                                        <ows2:MinimumValue>50.7539</ows2:MinimumValue>
-                                        <ows2:MaximumValue>53.4658</ows2:MaximumValue>
-                                    </ows2:Range>
-                                </ows2:AllowedValues>
-                            </qos-wfs:Constraint>
-                            <qos-wfs:Constraint name="OutputFormat">
+                            </qos:RequestParameterConstraint>
+                            <qos:RequestParameterConstraint name="OutputFormat">
                                 <ows2:AllowedValues>
                                     <ows2:Value>application/gml+xml; version=3.2</ows2:Value>
                                     <ows2:Value>application/gml+xml</ows2:Value>
                                 </ows2:AllowedValues>
-                            </qos-wfs:Constraint>
-                            <qos-wfs:Constraint name="FeatureCount">
+                            </qos:RequestParameterConstraint>
+                            <qos:RequestParameterConstraint name="FeatureCount">
                                 <ows2:AllowedValues>
                                     <ows2:Value>50</ows2:Value>
                                 </ows2:AllowedValues>
-                            </qos-wfs:Constraint>
-                            <qos-wfs:Constraint name="ResolveReferences">
+                            </qos:RequestParameterConstraint>
+                            <qos:RequestParameterConstraint name="ResolveReferences">
                                 <ows2:AllowedValues>
                                     <ows2:Value>none</ows2:Value>
                                 </ows2:AllowedValues>
-                            </qos-wfs:Constraint>
-                        </qos-wfs:AdHocQueryRestrictions>
+                            </qos:RequestParameterConstraint>
+                        </qos-wfs:AdHocQueryConstraints>
                     </qos-wfs:GetFeatureOperation>
                     <qos:QualityOfServiceStatement>
                         <qos:Metric>
@@ -343,24 +331,24 @@
                                 <ows2:Get/>
                             </ows2:HTTP>
                         </ows2:DCP>
-                        <qos-wfs:StoredQueryRestrictions>
+                        <qos-wfs:StoredQueryConstraints>
                             <qos-wfs:StoredQueryId>http://inspire.ec.europa.eu/operation/download/getspatialdataset</qos-wfs:StoredQueryId>
-                            <qos-wfs:Parameter name="DataSetIdCode">
+                            <qos:RequestParameterConstraint name="DataSetIdCode">
                                 <ows2:AllowedValues>
                                     <ows2:Value>68d14b1c-71ad-4ce7-8267-45787a80c2d4</ows2:Value>
                                 </ows2:AllowedValues>
-                            </qos-wfs:Parameter>
-                            <qos-wfs:Parameter name="CRS">
+                            </qos:RequestParameterConstraint>
+                            <qos:RequestParameterConstraint name="CRS">
                                 <ows2:AllowedValues>
                                     <ows2:Value>urn:ogc:def:crs:EPSG::4258</ows2:Value>
                                 </ows2:AllowedValues>
-                            </qos-wfs:Parameter>
-                            <qos-wfs:Parameter name="Language">
+                            </qos:RequestParameterConstraint>
+                            <qos:RequestParameterConstraint name="Language">
                                 <ows2:AllowedValues>
                                     <ows2:Value>dut</ows2:Value>
                                 </ows2:AllowedValues>
-                            </qos-wfs:Parameter>
-                        </qos-wfs:StoredQueryRestrictions>
+                            </qos:RequestParameterConstraint>
+                        </qos-wfs:StoredQueryConstraints>
                     </qos-wfs:GetFeatureOperation>
                     <qos:QualityOfServiceStatement>
                         <qos:Metric>

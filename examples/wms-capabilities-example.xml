@@ -104,7 +104,7 @@
 
 		<inspire_vs:ExtendedCapabilities>
 			<inspire_common:MetadataUrl xsi:type="inspire_common:resourceLocatorType">
-				<inspire_common:URL> http://www.paikkatietohakemisto.fi/geonetwork/srv/fi/csw?Service=CSW&amp;Request=GetRecordById&amp;Version=2.0.2&amp;id=6f992abd-1605-43c8-9228-b9dd0b92d26b&amp;outputSchema=http%3A%2F%2Fwww.isotc211.org%2F2005%2Fgmd&amp;elementSetName=full
+				<inspire_common:URL>http://www.paikkatietohakemisto.fi/geonetwork/srv/fi/csw?Service=CSW&amp;Request=GetRecordById&amp;Version=2.0.2&amp;id=6f992abd-1605-43c8-9228-b9dd0b92d26b&amp;outputSchema=http%3A%2F%2Fwww.isotc211.org%2F2005%2Fgmd&amp;elementSetName=full
 		</inspire_common:URL>
 				<inspire_common:MediaType>application/vnd.ogc.csw.GetRecordByIdResponse_xml</inspire_common:MediaType>
 			</inspire_common:MetadataUrl>
@@ -163,92 +163,66 @@
 					<qos-wms:LayerRequestOption>
 						<qos-wms:LayerName>Vesienhoitoalueet</qos-wms:LayerName>
 						<qos-wms:LayerName>VPDPohjavesi</qos-wms:LayerName>
-						<qos-wms:Contraint name="CRS">
+						<qos:AreaConstraint srsName="EPSG:3067">
+							<qos:LowerCorner>64934.103000 6626229.791000</qos:LowerCorner>
+							<qos:UpperCorner>732333.567000 7776461.100000</qos:UpperCorner>
+						</qos:AreaConstraint>
+						<qos:RequestParameterConstraint name="CRS">
 							<ows:AllowedValues>
 								<ows:Value>EPSG:3067</ows:Value>
 							</ows:AllowedValues>
-						</qos-wms:Contraint>
-						<qos-wms:Contraint name="CoordinateLimits">
-							<ows:AllowedValues>
-								<ows:Range>
-									<!-- FIXME: should be 3067 values-->
-									<ows:MinimumValue>3.37087</ows:MinimumValue>
-									<ows:MaximumValue>7.21097</ows:MaximumValue>
-								</ows:Range>
-							</ows:AllowedValues>
-						</qos-wms:Contraint>
-						<qos-wms:Contraint name="CoordinateLimits">
-							<ows:AllowedValues>
-								<ows:Range>
-									<!-- FIXME: should be 3067 values-->
-									<ows:MinimumValue>50.7539</ows:MinimumValue>
-									<ows:MaximumValue>53.4658</ows:MaximumValue>
-								</ows:Range>
-							</ows:AllowedValues>
-						</qos-wms:Contraint>
-						<qos-wms:Contraint name="ImageWidth">
+						</qos:RequestParameterConstraint>
+						<qos:RequestParameterConstraint name="ImageWidth">
 							<ows:AllowedValues>
 								<ows:Range>
 									<ows:MaximumValue>256</ows:MaximumValue>
 								</ows:Range>
 							</ows:AllowedValues>
-						</qos-wms:Contraint>
-						<qos-wms:Contraint name="ImageHeight">
+						</qos:RequestParameterConstraint>
+						<qos:RequestParameterConstraint name="ImageHeight">
 							<ows:AllowedValues>
 								<ows:Range>
 									<ows:MaximumValue>256</ows:MaximumValue>
 								</ows:Range>
 							</ows:AllowedValues>
-						</qos-wms:Contraint>
-						<qos-wms:Contraint name="OutputFormat">
+						</qos:RequestParameterConstraint>
+						<qos:RequestParameterConstraint name="OutputFormat">
 							<ows:AllowedValues>
 								<ows:Value>image/png</ows:Value>
 								<ows:Value>image/jpeg</ows:Value>
 							</ows:AllowedValues>
-						</qos-wms:Contraint>
+						</qos:RequestParameterConstraint>
 					</qos-wms:LayerRequestOption>
 					<qos-wms:LayerRequestOption>
 						<qos-wms:LayerName>VPDRannikkovesi</qos-wms:LayerName>
-						<qos-wms:Contraint name="CRS">
+						<qos:AreaConstraint srsName="EPSG:4326">
+							<qos:LowerCorner>3.37087 50.7539</qos:LowerCorner>
+							<qos:UpperCorner>7.21097 53.4658</qos:UpperCorner>
+						</qos:AreaConstraint>
+						<qos:RequestParameterConstraint name="CRS">
 							<ows:AllowedValues>
 								<ows:Value>EPSG:4326</ows:Value>
 							</ows:AllowedValues>
-						</qos-wms:Contraint>
-						<qos-wms:Contraint name="CoordinateLimits">
-							<ows:AllowedValues>
-								<ows:Range>
-									<ows:MinimumValue>3.37087</ows:MinimumValue>
-									<ows:MaximumValue>7.21097</ows:MaximumValue>
-								</ows:Range>
-							</ows:AllowedValues>
-						</qos-wms:Contraint>
-						<qos-wms:Contraint name="CoordinateLimits">
-							<ows:AllowedValues>
-								<ows:Range>
-									<ows:MinimumValue>50.7539</ows:MinimumValue>
-									<ows:MaximumValue>53.4658</ows:MaximumValue>
-								</ows:Range>
-							</ows:AllowedValues>
-						</qos-wms:Contraint>
-						<qos-wms:Contraint name="ImageWidth">
+						</qos:RequestParameterConstraint>
+						<qos:RequestParameterConstraint name="ImageWidth">
 							<ows:AllowedValues>
 								<ows:Range>
 									<ows:MaximumValue>150</ows:MaximumValue>
 								</ows:Range>
 							</ows:AllowedValues>
-						</qos-wms:Contraint>
-						<qos-wms:Contraint name="ImageHeight">
+						</qos:RequestParameterConstraint>
+						<qos:RequestParameterConstraint name="ImageHeight">
 							<ows:AllowedValues>
 								<ows:Range>
 									<ows:MaximumValue>150</ows:MaximumValue>
 								</ows:Range>
 							</ows:AllowedValues>
-						</qos-wms:Contraint>
-						<qos-wms:Contraint name="OutputFormat">
+						</qos:RequestParameterConstraint>
+						<qos:RequestParameterConstraint name="OutputFormat">
 							<ows:AllowedValues>
 								<ows:Value>image/tiff</ows:Value>
 							</ows:AllowedValues>
-						</qos-wms:Contraint>
+						</qos:RequestParameterConstraint>
 					</qos-wms:LayerRequestOption>
 				</qos-wms:GetMapOperation>
 				<qos:QualityOfServiceStatement>

@@ -20,19 +20,21 @@
             <extension base="qos:AbstractOperationType">
                 <sequence>
                     <choice>
-                        <element name="AdHocQueryRestrictions" maxOccurs="unbounded" minOccurs="0">
+                        <element name="AdHocQueryConstraints" maxOccurs="unbounded" minOccurs="0">
                             <complexType>
                                 <sequence>
                                     <element name="TypeNameOptions" type="fes:TypeNamesListType" minOccurs="0"/>
-                                    <element name="Constraint" type="ows:DomainType" minOccurs="0" maxOccurs="unbounded"/>
+                                    <element ref="qos:AreaConstraint" minOccurs="0" maxOccurs="unbounded"/>
+                                    <element ref="qos:RequestParameterConstraint" minOccurs="0" maxOccurs="unbounded"/>
                                 </sequence>
                             </complexType>
                         </element>
-                        <element name="StoredQueryRestrictions" maxOccurs="unbounded" minOccurs="0">
+                        <element name="StoredQueryConstraints" maxOccurs="unbounded" minOccurs="0">
                             <complexType>
                                 <sequence>
                                     <element name="StoredQueryId" type="anyURI" minOccurs="0"/>
-                                    <element name="Parameter" type="ows:DomainType" minOccurs="0" maxOccurs="unbounded"/>
+                                    <element ref="qos:AreaConstraint" minOccurs="0" maxOccurs="unbounded"/>
+                                    <element ref="qos:RequestParameterConstraint" minOccurs="0" maxOccurs="unbounded"/>
                                 </sequence>
                             </complexType>
                         </element>

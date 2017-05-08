@@ -21,7 +21,8 @@
                        <complexType>
                            <sequence>
                                <element name="LayerName" type="string" maxOccurs="unbounded"/>
-                               <element name="Contraint" type="ows:DomainType" maxOccurs="unbounded"/>
+                               <element ref="qos:AreaConstraint" minOccurs="0" maxOccurs="unbounded"/>
+                               <element ref="qos:RequestParameterConstraint" minOccurs="0" maxOccurs="unbounded"/>
                            </sequence>
                        </complexType>
                     </element>
