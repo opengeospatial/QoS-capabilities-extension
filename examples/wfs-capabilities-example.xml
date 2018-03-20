@@ -17,8 +17,8 @@
     xmlns:gn="urn:x-inspire:specification:gmlas:GeographicalNames:3.0"
     xmlns:base="urn:x-inspire:specification:gmlas:BaseTypes:3.2"
     xmlns:ad="urn:x-inspire:specification:gmlas:Addresses:3.0"
-    xmlns:qos="http://www.opengis.net/QoS/1.0"
-    xmlns:qos-wfs="http://www.opengis.net/QoS/wfs/1.0"
+    xmlns:qos="http://www.opengis.net/qos/1.0"
+    xmlns:qos-wfs="http://www.opengis.net/qos/wfs/1.0"
     version="2.0.0"
     xsi:schemaLocation="http://www.opengis.net/wfs/2.0 http://schemas.opengis.net/wfs/2.0/wfs.xsd
     http://inspire.ec.europa.eu/schemas/common/1.0 http://inspire.ec.europa.eu/schemas/common/1.0/common.xsd
@@ -247,10 +247,7 @@
 
             <qos-wfs:QualityOfServiceMetadata>
                 <qos:OperatingInfo>
-                    <qos:OperationalStatus>
-                        <qos:Identifier>http://def.opengeospatial.org/codelist/qos/OperationalStatus/operational</qos:Identifier>
-                        <qos:Title>Operational</qos:Title>
-                    </qos:OperationalStatus>
+                    <qos:OperationalStatus xlink:href="http://def.opengeospatial.org/codelist/qos/OperationalStatus/operational" xlink:title="Operational" />
                     <qos:ByDaysOfWeek>
                         <qos:On>Monday Tuesday Wednesday Thursday Friday</qos:On>
                         <qos:StartTime>06:00:00+01:00</qos:StartTime>
@@ -264,21 +261,23 @@
                 </qos:OperatingInfo>
 
                 <qos:QualityOfServiceStatement>
-                    <qos:Metric>
-                        <qos:Identifier>http://def.opengeospatial.org/codelist/qos/QualityOfServiceMetric/availabilityMonthly</qos:Identifier>
-                        <qos:Title>Monthly service availability</qos:Title>
-                    </qos:Metric>
+                    <qos:Metric xlink:href="http://def.opengeospatial.org/codelist/qos/QualityOfServiceMetric/availabilityMonthly" xlink:title="Monthly service availability" />
                     <qos:MoreThanOrEqual uom="%">96.5</qos:MoreThanOrEqual>
                 </qos:QualityOfServiceStatement>
 
                 <qos:QualityOfServiceStatement>
-                    <qos:Metric>
-                        <qos:Identifier>http://def.opengeospatial.org/codelist/qos/QualityOfServiceMetric/undegradedCapacityRequestsPerSecond</qos:Identifier>
-                        <qos:Title>Service capacity, requests per second</qos:Title>
-                    </qos:Metric>
+                    <qos:Metric xlink:href="http://def.opengeospatial.org/codelist/qos/QualityOfServiceMetric/undegradedCapacityRequestsPerSecond" xlink:title="Service capacity, requests per second" />
                     <qos:MoreThanOrEqual uom="s-1">32</qos:MoreThanOrEqual>
                 </qos:QualityOfServiceStatement>
 
+                <qos:RepresentativeOperation>
+                    <qos:GetCapabilitiesOperation/>
+                    <qos:QualityOfServiceStatement>
+                        <qos:Metric xlink:href="http://def.opengeospatial.org/codelist/qos/QualityOfServiceMetric/initialResponseTime" xlink:title="Initial response time" />
+                        <qos:LessThanOrEqual uom="ms">1200</qos:LessThanOrEqual>
+                    </qos:QualityOfServiceStatement>
+                </qos:RepresentativeOperation>
+                
                 <qos:RepresentativeOperation>
                     <qos-wfs:GetFeatureOperation>
                         <ows2:DCP>
@@ -287,7 +286,6 @@
                             </ows2:HTTP>
                         </ows2:DCP>
                         <qos-wfs:AdHocQueryConstraints>
-                            <qos-wfs:TypeNameOptions>ad:Address ad:ThoroughfareName</qos-wfs:TypeNameOptions>
                             <qos:AreaConstraint srsName="urn:ogc:def:crs:EPSG::4258">
                                 <qos:LowerCorner>3.37087 50.7539</qos:LowerCorner>
                                 <qos:UpperCorner>7.21097 53.4658</qos:UpperCorner>
@@ -303,7 +301,7 @@
                                     <ows2:Value>application/gml+xml</ows2:Value>
                                 </ows2:AllowedValues>
                             </qos:RequestParameterConstraint>
-                            <qos:RequestParameterConstraint name="FeatureCount">
+                            <qos:RequestParameterConstraint name="Count">
                                 <ows2:AllowedValues>
                                     <ows2:Value>50</ows2:Value>
                                 </ows2:AllowedValues>
@@ -313,13 +311,11 @@
                                     <ows2:Value>none</ows2:Value>
                                 </ows2:AllowedValues>
                             </qos:RequestParameterConstraint>
+                            <qos-wfs:TypeNames>ad:Address</qos-wfs:TypeNames>
                         </qos-wfs:AdHocQueryConstraints>
                     </qos-wfs:GetFeatureOperation>
                     <qos:QualityOfServiceStatement>
-                        <qos:Metric>
-                            <qos:Identifier>http://def.opengeospatial.org/codelist/qos/QualityOfServiceMetric/initialResponseTime</qos:Identifier>
-                            <qos:Title>Initial response time</qos:Title>
-                        </qos:Metric>
+                        <qos:Metric xlink:href="http://def.opengeospatial.org/codelist/qos/QualityOfServiceMetric/initialResponseTime"  xlink:title="Initial response time" />
                         <qos:LessThanOrEqual uom="ms">750</qos:LessThanOrEqual>
                     </qos:QualityOfServiceStatement>
                 </qos:RepresentativeOperation>
@@ -332,7 +328,6 @@
                             </ows2:HTTP>
                         </ows2:DCP>
                         <qos-wfs:StoredQueryConstraints>
-                            <qos-wfs:StoredQueryId>http://inspire.ec.europa.eu/operation/download/getspatialdataset</qos-wfs:StoredQueryId>
                             <qos:RequestParameterConstraint name="DataSetIdCode">
                                 <ows2:AllowedValues>
                                     <ows2:Value>68d14b1c-71ad-4ce7-8267-45787a80c2d4</ows2:Value>
@@ -348,13 +343,11 @@
                                     <ows2:Value>dut</ows2:Value>
                                 </ows2:AllowedValues>
                             </qos:RequestParameterConstraint>
+                            <qos-wfs:StoredQueryId>http://inspire.ec.europa.eu/operation/download/getspatialdataset</qos-wfs:StoredQueryId>
                         </qos-wfs:StoredQueryConstraints>
                     </qos-wfs:GetFeatureOperation>
                     <qos:QualityOfServiceStatement>
-                        <qos:Metric>
-                            <qos:Identifier>http://def.opengeospatial.org/codelist/qos/QualityOfServiceMetric/initialResponseTime</qos:Identifier>
-                            <qos:Title>Initial response time</qos:Title>
-                        </qos:Metric>
+                        <qos:Metric xlink:href="http://def.opengeospatial.org/codelist/qos/QualityOfServiceMetric/initialResponseTime" xlink:title="Initial response time" />
                         <qos:LessThanOrEqual uom="ms">350</qos:LessThanOrEqual>
                     </qos:QualityOfServiceStatement>
                 </qos:RepresentativeOperation>
